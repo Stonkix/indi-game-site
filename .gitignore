@@ -1,0 +1,18 @@
+# Виртуальное окружение и мусор Python — к сайту отношения не имеют
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Секреты и посторонние файлы из этой папки: в репозиторий им нельзя
+config.py
+ai.py
+.env
+.env.*
+opencode.json
+
+# ОС
+.DS_Store
+Thumbs.db
+desktop.ini

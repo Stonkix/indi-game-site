@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="description" content="DUNGEON PUNK — каталог гачи-ремиксов в стиле панк-рока: слушай, фильтруй по BPM и жанру, голосуй и присылай свои треки.">
+<title>DUNGEON PUNK — Gachi remixes. Loud. Fast. No rules.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Rubik+Glitch&family=Special+Elite&family=Permanent+Marker&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M18 3 7 18h6l-3 11L25 12h-7z' fill='%23f5e400'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="skip-link" href="#catalog">Прыгнуть к трекам</a>
+
+<!-- Зерно / ксерокс -->
+<div class="grain" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<!-- SVG-фильтры для «от руки» рамок и рваных краёв -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="roughEdge" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="site-header" id="top">
+  <div class="tape tape--tl" aria-hidden="true"></div>
+  <div class="tape tape--tr" aria-hidden="true"></div>
+
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="DUNGEON PUNK — на главную">
+      <span class="ransom ransome-logo" data-ransom="DUNGEON PUNK" data-glitch>DUNGEON PUNK</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="#catalog">Треки</a></li>
+        <li><a href="#top-week">Топ</a></li>
+        <li><a href="#arcade">Автоматы</a></li>
+        <li><a href="#studio">Бит-машина</a></li>
+        <li><a href="#submit">Отправить</a></li>
+        <li><a href="#about">О проекте</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="loud-switch" id="loudSwitch" aria-pressed="false" title="Визуальный режим: тише / громче">
+      <span class="loud-switch__knob" aria-hidden="true"></span>
+      <span class="loud-switch__label">
+        <span class="quiet-label">Тише</span>
+        <span class="loud-label">Громче</span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<div class="caution-stripe" aria-hidden="true">
+  <span>WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp;</span>
+  <span>WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp; WARNING &nbsp;•&nbsp; LOUD &nbsp;•&nbsp;</span>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-sticker hero-sticker--star" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path d="M50 4l13 33 35 2-27 22 9 34-30-19-30 19 9-34L2 39l35-2z" fill="currentColor"/></svg>
+      <span>DIY</span>
+    </div>
+    <div class="hero-sticker hero-sticker--bolt" aria-hidden="true">
+      <svg viewBox="0 0 60 100"><path d="M36 0 2 56h20l-8 44 42-58H34z" fill="currentColor"/></svg>
+    </div>
+
+    <p class="hero-kicker">Гараж-релиз №&nbsp;13 • с&nbsp;2026</p>
+
+    <h1 class="hero-title">
+      <span class="ransom ransom--mega" data-ransom="DUNGEON PUNK">DUNGEON PUNK</span>
+    </h1>
+
+    <p class="hero-slogan">Gachi remixes. <mark>Loud.</mark> <mark>Fast.</mark> <mark>No rules.</mark></p>
+
+    <p class="hero-lead">
+      Каталог мемных ремиксов, которые звучат как драка в подвале с дисторшном.
+      Без спонсоров, без лейблов, без менеджеров. Только три аккорда и честный BPM.
+    </p>
+
+    <div class="hero-actions">
+      <button type="button" class="btn btn--acid" id="randomTrackBtn">Врубить случайный трек</button>
+      <a class="btn btn--ghost" href="#submit">Прислать свой ремикс</a>
+    </div>
+
+    <div class="handwritten-arrow" aria-hidden="true">
+      <svg viewBox="0 0 120 60">
+        <path d="M4 8c26 2 52 14 66 34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M62 34l10 10 4-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="marquee" role="marquee" aria-label="Девиз: Loud, Fast, No Rules">
+    <div class="marquee__track">
+      <span>LOUD • FAST • NO RULES • LOUD • FAST • NO RULES • LOUD • FAST • NO RULES • LOUD • FAST • NO RULES •&nbsp;</span>
+      <span aria-hidden="true">LOUD • FAST • NO RULES • LOUD • FAST • NO RULES • LOUD • FAST • NO RULES • LOUD • FAST • NO RULES •&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ============ ФИЛЬТРЫ + КАТАЛОГ ============ -->
+  <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
+    <div class="section-head">
+      <h2 class="section-title" id="catalog-title">
+        <span class="ransom" data-ransom="КАТАЛОГ">КАТАЛОГ</span>
+      </h2>
+      <p class="section-sub" id="resultCount" aria-live="polite">Загружаем ящик с кассетами…</p>
+    </div>
+
+    <form class="filters" id="filters" role="search" autocomplete="off">
+      <div class="field field--search">
+        <label for="searchInput">Поиск</label>
+        <input type="search" id="searchInput" name="q" placeholder="Название или автор ремикса…">
+      </div>
+
+      <div class="field field--tags">
+        <span class="field__legend" id="tagLegend">Теги</span>
+        <div class="chips" id="tagChips" role="group" aria-labelledby="tagLegend"></div>
+      </div>
+
+      <div class="field field--bpm">
+        <label for="bpmRange">BPM: до <output id="bpmOut" for="bpmRange">200</output></label>
+        <input type="range" id="bpmRange" name="bpm" min="100" max="210" step="2" value="210">
+      </div>
+
+      <div class="field field--sort">
+        <label for="sortSelect">Сортировка</label>
+        <select id="sortSelect" name="sort">
+          <option value="new">Новые</option>
+          <option value="top">Топ по голосам</option>
+          <option value="bpm">По BPM</option>
+          <option value="duration">По длительности</option>
+        </select>
+      </div>
+
+      <button type="reset" class="btn btn--ghost btn--sm" id="resetFilters">Сбросить</button>
+    </form>
+
+    <div class="grid" id="trackGrid" aria-busy="true"></div>
+
+    <p class="empty-state" id="emptyState" hidden>
+      <strong>Ничего не найдено.</strong> Даже панк-группы иногда молчат.
+    </p>
+  </section>
+
+  <!-- ============ ТОП НЕДЕЛИ ============ -->
+  <section class="top-week" id="top-week" aria-labelledby="top-title">
+    <div class="torn-edge" aria-hidden="true"></div>
+    <div class="section-head">
+      <h2 class="section-title" id="top-title">
+        <span class="ransom" data-ransom="ТОП НЕДЕЛИ">ТОП НЕДЕЛИ</span>
+      </h2>
+      <p class="section-sub">Афиша подпольного концерта. Десять треков, которые рвут зал.</p>
+    </div>
+    <ol class="chart" id="weekChart"></ol>
+  </section>
+
+  <!-- ============ ДВОРОВЫЕ АВТОМАТЫ ============ -->
+  <section class="arcade" id="arcade" aria-labelledby="arcade-title">
+    <div class="section-head">
+      <h2 class="section-title" id="arcade-title">
+        <span class="ransom" data-ransom="ДВОРОВЫЕ АВТОМАТЫ">ДВОРОВЫЕ АВТОМАТЫ</span>
+      </h2>
+      <p class="section-sub">Два автомата из гаража. Оригинальные, нарисованные маркером. Монетку не надо — просто нажми.</p>
+    </div>
+
+    <div class="arcade-grid">
+
+      <!-- ЛЕВО: копатель -->
+      <article class="cab cab--digger" aria-labelledby="diggerTitle">
+        <header class="cab__head">
+          <h3 class="cab__title" id="diggerTitle">ШАХТА&nbsp;13</h3>
+          <span class="cab__side" aria-hidden="true">— слева —</span>
+        </header>
+
+        <div class="cab__screen">
+          <canvas id="diggerCanvas" width="392" height="252" tabindex="0"
+                  role="application"
+                  aria-label="Игра Копатель. Управление: стрелки или W A S D. Собирай медяки, обходи камни, дойди до люка."></canvas>
+        </div>
+
+        <p class="cab__stats">
+          <span>Медяки: <b id="diggerOre">0</b></span>
+          <span>Счёт: <b id="diggerScore">0</b></span>
+          <span>Уровень: <b id="diggerLevel">1</b></span>
+        </p>
+        <p class="cab__msg" id="diggerMsg" role="status" aria-live="polite">Стрелки — копать. Камни падают. Люк — внизу справа.</p>
+
+        <div class="cab__controls">
+          <div class="dpad" role="group" aria-label="Управление копателем">
+            <button type="button" class="dbtn" data-dir="left" aria-label="Влево">◀</button>
+            <button type="button" class="dbtn" data-dir="down" aria-label="Вниз">▼</button>
+            <button type="button" class="dbtn" data-dir="right" aria-label="Вправо">▶</button>
+          </div>
+          <button type="button" class="btn btn--acid btn--sm" id="diggerStart">Новая шахта</button>
+        </div>
+      </article>
+
+      <!-- ПРАВО: летун -->
+      <article class="cab cab--flyer" aria-labelledby="flyerTitle">
+        <header class="cab__head">
+          <h3 class="cab__title" id="flyerTitle">ПАНК-ПТИЦА</h3>
+          <span class="cab__side" aria-hidden="true">— справа —</span>
+        </header>
+
+        <div class="cab__screen">
+          <canvas id="flyerCanvas" width="360" height="252" tabindex="0"
+                  role="application"
+                  aria-label="Игра Панк-птица. Нажимай пробел или стрелку вверх, чтобы взмахнуть крылом, и пролетай между усилителями."></canvas>
+        </div>
+
+        <p class="cab__stats">
+          <span>Счёт: <b id="flyerScore">0</b></span>
+          <span>Рекорд: <b id="flyerBest">0</b></span>
+        </p>
+        <p class="cab__msg" id="flyerMsg" role="status" aria-live="polite">Пробел / ↑ — взмах. Не влети в усилители.</p>
+
+        <div class="cab__controls">
+          <button type="button" class="btn btn--acid btn--sm" id="flyerStart">Взлететь</button>
+        </div>
+      </article>
+
+      <!-- В ТАКТ: барабаны -->
+      <article class="cab cab--drums" aria-labelledby="drumsTitle">
+        <header class="cab__head">
+          <h3 class="cab__title" id="drumsTitle">БАРАБАНЫ</h3>
+          <span class="cab__side" aria-hidden="true">— в такт —</span>
+        </header>
+
+        <div class="cab__screen">
+          <canvas id="drumsCanvas" width="440" height="252" tabindex="0"
+                  role="application"
+                  aria-label="Ритм-игра Барабаны. Четыре дорожки, клавиши D F J K или стрелки. Попадай по нотам в такт BPM трека."></canvas>
+        </div>
+
+        <p class="cab__stats">
+          <span>Счёт: <b id="drumsScore">0</b></span>
+          <span>Комбо: <b id="drumsCombo">0</b></span>
+          <span>Точность: <b id="drumsAcc">—</b></span>
+          <span>Рекорд: <b id="drumsBest">0</b></span>
+        </p>
+        <p class="cab__msg" id="drumsMsg" role="status" aria-live="polite">
+          D F J K — четыре катушки. BPM берётся из играющего трека.
+        </p>
+
+        <div class="cab__controls">
+          <div class="pads" role="group" aria-label="Дорожки барабанов">
+            <button type="button" class="pad" data-lane="0" aria-label="Дорожка 1, клавиша D"><span>D</span></button>
+            <button type="button" class="pad" data-lane="1" aria-label="Дорожка 2, клавиша F"><span>F</span></button>
+            <button type="button" class="pad" data-lane="2" aria-label="Дорожка 3, клавиша J"><span>J</span></button>
+            <button type="button" class="pad" data-lane="3" aria-label="Дорожка 4, клавиша K"><span>K</span></button>
+          </div>
+          <button type="button" class="btn btn--acid btn--sm" id="drumsStart">В такт</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ БИТ-МАШИНА ============ -->
+  <section class="studio-section" id="studio" aria-labelledby="studio-title">
+    <div class="section-head">
+      <h2 class="section-title" id="studio-title">
+        <span class="ransom" data-ransom="БИТ-МАШИНА">БИТ-МАШИНА</span>
+      </h2>
+      <p class="section-sub">
+        Секвенсор из подвала: 16 шагов, восемь железок, ни одного плагина.
+        Звук синтезируется прямо в браузере — сэмплов нет.
+      </p>
+    </div>
+
+    <div class="machine">
+      <div class="transport">
+        <button type="button" class="btn btn--acid" id="studioPlay" aria-pressed="false">▶ ДОЛБИТЬ</button>
+
+        <span class="tport">
+          <label for="studioBpm">Темп: <output id="studioBpmOut" for="studioBpm">168</output> BPM</label>
+          <input type="range" id="studioBpm" min="50" max="220" step="1" value="168">
+        </span>
+
+        <span class="tport">
+          <label for="studioSwing">Свинг: <output id="studioSwingOut" for="studioSwing">12%</output></label>
+          <input type="range" id="studioSwing" min="0" max="0.6" step="0.01" value="0.12">
+        </span>
+
+        <span class="tport">
+          <label for="studioVol">Громкость</label>
+          <input type="range" id="studioVol" min="0" max="1" step="0.01" value="0.75">
+        </span>
+
+        <span class="tport tport--dirt" id="dirtPort">
+          <label for="studioDirt">Грязь: <output id="studioDirtOut" for="studioDirt">25%</output></label>
+          <input type="range" id="studioDirt" min="0" max="1.05" step="0.01" value="0.25"
+                 aria-describedby="dirtHint">
+          <span class="tport__hint" id="dirtHint">дальше 100% — на свой страх</span>
+        </span>
+
+        <span class="tport">
+          <label for="studioRoot">Тоника</label>
+          <select id="studioRoot">
+            <option value="E">E</option>
+            <option value="G">G</option>
+            <option value="A">A</option>
+            <option value="D">D</option>
+          </select>
+        </span>
+
+        <span class="tport">
+          <label for="studioPreset">Пресет</label>
+          <select id="studioPreset">
+            <option value="">— выбери —</option>
+            <option value="punk">Панк</option>
+            <option value="hardcore">Хардкор</option>
+            <option value="ska">Ска-панк</option>
+            <option value="oi">Oi!</option>
+            <option value="noise">Просто шум</option>
+          </select>
+        </span>
+
+        <span class="tport tport--btns">
+          <button type="button" class="btn btn--ghost btn--sm" id="studioRandom">Случайный бит</button>
+          <button type="button" class="btn btn--ghost btn--sm" id="studioSync">BPM из трека</button>
+          <button type="button" class="btn btn--ghost btn--sm" id="studioClear">Очистить</button>
+          <button type="button" class="btn btn--ghost btn--sm" id="studioDownload">Скачать JSON</button>
+        </span>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="sgrid" id="studioGrid" role="group" aria-label="Сетка шагов бит-машины"></div>
+      </div>
+
+      <p class="machine__msg" id="studioMsg" role="status" aria-live="polite">
+        16 шагов, восемь железок. Жми по клеткам или возьми пресет.
+      </p>
+      <p class="machine__note">
+        Всё играется на осцилляторах и шуме через Web Audio — ни одного сэмпла и ни одного чужого файла.
+        Биты сохраняются в вашем браузере (<code>dp.studio.v1</code>).
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ОТПРАВИТЬ РЕМИКС ============ -->
+  <section class="submit-section" id="submit" aria-labelledby="submit-title">
+    <div class="section-head">
+      <h2 class="section-title" id="submit-title">
+        <span class="ransom" data-ransom="ОТПРАВИТЬ">ОТПРАВИТЬ</span>
+      </h2>
+      <p class="section-sub">Заполни бумажку печатными буквами. Мы прочитаем.</p>
+    </div>
+
+    <div class="submit-wrap">
+      <form class="submit-form" id="submitForm" novalidate>
+        <p class="form-row">
+          <label for="fTitle">Название трека <b aria-hidden="true">*</b></label>
+          <input id="fTitle" name="title" required minlength="2" maxlength="60" aria-describedby="fTitleErr">
+          <span class="err" id="fTitleErr" role="alert"></span>
+        </p>
+
+        <p class="form-row">
+          <label for="fArtist">Автор ремикса <b aria-hidden="true">*</b></label>
+          <input id="fArtist" name="artist" required minlength="2" maxlength="40" aria-describedby="fArtistErr">
+          <span class="err" id="fArtistErr" role="alert"></span>
+        </p>
+
+        <p class="form-row">
+          <label for="fUrl">Ссылка на трек <b aria-hidden="true">*</b></label>
+          <input id="fUrl" name="url" type="url" inputmode="url" placeholder="https://…" required aria-describedby="fUrlErr fUrlHint">
+          <span class="hint" id="fUrlHint">Прямая ссылка на аудио или на страницу релиза (SoundCloud, Bandcamp, личный сайт).</span>
+          <span class="err" id="fUrlErr" role="alert"></span>
+        </p>
+
+        <p class="form-row">
+          <label for="fTags">Теги</label>
+          <input id="fTags" name="tags" placeholder="punk, hardcore, ska-punk" aria-describedby="fTagsHint">
+          <span class="hint" id="fTagsHint">Через запятую. Что угодно из списка жанров.</span>
+        </p>
+
+        <p class="form-row form-row--check">
+          <input type="checkbox" id="fRights" name="rights" required aria-describedby="fRightsErr">
+          <label for="fRights">Я автор этого ремикса или имею право на его публикацию, и согласен с правилами раздела «О проекте».</label>
+          <span class="err" id="fRightsErr" role="alert"></span>
+        </p>
+
+        <button type="submit" class="btn btn--acid">Отправить в ящик</button>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+        <p class="form-note">
+          Заявки пока складываются локально в вашем браузере (<code>localStorage</code>) — это демо-заглушка.
+          <!-- BACKEND: замените localStorage на fetch('POST /api/tracks') — точка подключения в app.js, функция submitTrack() -->
+        </p>
+      </form>
+
+      <aside class="submitted-box" aria-labelledby="submittedTitle">
+        <h3 id="submittedTitle">Ваши заявки</h3>
+        <ul id="submittedList" class="submitted-list"></ul>
+        <p class="submitted-empty" id="submittedEmpty">Пока пусто. Первым быть не страшно.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ О ПРОЕКТЕ ============ -->
+  <section class="about-section" id="about" aria-labelledby="about-title">
+    <div class="torn-edge torn-edge--flip" aria-hidden="true"></div>
+    <div class="section-head">
+      <h2 class="section-title" id="about-title">
+        <span class="ransom" data-ransom="МАНИФЕСТ">МАНИФЕСТ</span>
+      </h2>
+      <p class="section-sub">Коротко, как панк-песня.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="manifesto framed">
+        <ol class="manifesto-list">
+          <li>Музыка — это шум, который кому-то нужен. Делай шум.</li>
+          <li>BPM выше, чем у соседа. Всегда.</li>
+          <li>Репост — не кража. Кража — это без указания автора.</li>
+          <li>Уважай авторов. Хочешь — спроси. Не дали — не публикуй.</li>
+          <li>Никакого откровенного контента. Юмор — да, пошлость — нет.</li>
+          <li>Критикуй трек, а не человека. Одно из двух можно исправить.</li>
+          <li>Если твой ремикс сняли по просьбе автора — это не драма, это правила.</li>
+        </ol>
+      </div>
+
+      <div class="rules-box framed">
+        <h3>Авторские права</h3>
+        <p>
+          Все треки принадлежат их авторам — ремиксерам и правообладателям оригинальных произведений.
+          DUNGEON PUNK ничего не продаёт и не претендует на чужую работу: это каталог со ссылками и открытым голосованием.
+        </p>
+        <p>
+          Если вы автор или правообладатель и хотите удалить трек — напишите на
+          <a href="mailto:takeitdown@dungeonpunk.example">takeitdown@dungeonpunk.example</a>
+          с ссылкой на трек. Удаляем без вопросов и переговоров, обычно в течение 48 часов.
+        </p>
+        <p class="fine">
+          Демо-контент: названия треков и имена авторов вымышлены для примера. Фотографий реальных людей,
+          чужих логотипов и персонажей на сайте нет — вся графика оригинальная и векторная.
+        </p>
+        <a class="mail-sticker" href="mailto:takeitdown@dungeonpunk.example">✉ жалоба / удаление</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+    <p class="footer-logo"><span class="ransom" data-ransom="DUNGEON PUNK">DUNGEON PUNK</span></p>
+    <nav aria-label="Ссылки в подвале">
+      <ul>
+        <li><a href="#catalog">Треки</a></li>
+        <li><a href="#top-week">Топ недели</a></li>
+        <li><a href="#arcade">Автоматы</a></li>
+        <li><a href="#studio">Бит-машина</a></li>
+        <li><a href="#submit">Отправить ремикс</a></li>
+        <li><a href="#about">Манифест и права</a></li>
+        <li><a href="mailto:takeitdown@dungeonpunk.example">Удаление трека</a></li>
+      </ul>
+    </nav>
+    <p class="footer-note">Made in a garage. No trackers. No cookies. Only riffs. © <span id="year">2026</span> DUNGEON PUNK</p>
+  </div>
+</footer>
+
+<!-- Табличка «ВЫКРУТИЛ. СЛОМАЛ.» (chaos.js) и боковые панели:
+     справа «режем мыло», слева «67 vs ТУН-ТУН» (rails.js) — создаются лениво,
+     вместе со своими стилями, чтобы стартовая страница за них не платила. -->
+
+<!-- ============ ПЛЕЕР ============ -->
+<section class="player" id="player" aria-label="Аудиоплеер">
+  <button type="button" class="player__collapse" id="playerCollapse" aria-expanded="false" aria-controls="playerBody">
+    <span class="sr-only">Развернуть плеер</span>
+    <span aria-hidden="true" class="player__collapse-icon">▲</span>
+  </button>
+
+  <div class="player__cassette" aria-hidden="true">
+    <div class="reel" id="reelLeft"><span></span></div>
+    <div class="cassette-window">
+      <canvas id="viz" width="320" height="48" aria-hidden="true"></canvas>
+    </div>
+    <div class="reel" id="reelRight"><span></span></div>
+  </div>
+
+  <div class="player__body" id="playerBody">
+    <div class="player__now">
+      <p class="player__title" id="playerTitle" title="Ничего не играет">Ничего не играет</p>
+      <p class="player__artist" id="playerArtist">Выбери трек из каталога</p>
+      <p class="player__live sr-only" role="status" aria-live="polite" id="playerStatus"></p>
+    </div>
+
+    <div class="player__controls">
+      <button type="button" class="pbtn" id="prevBtn" aria-label="Предыдущий трек" title="Предыдущий (P)">⏮</button>
+      <button type="button" class="pbtn pbtn--play" id="playBtn" aria-label="Играть" title="Играть / пауза (Space)">▶</button>
+      <button type="button" class="pbtn" id="nextBtn" aria-label="Следующий трек" title="Следующий (N)">⏭</button>
+      <button type="button" class="pbtn" id="shuffleBtn" aria-label="Перемешать" aria-pressed="false" title="Перемешать">⤨</button>
+      <button type="button" class="pbtn" id="repeatBtn" aria-label="Повтор выключен" aria-pressed="false" title="Повтор">↻</button>
+    </div>
+
+    <div class="player__progress">
+      <span class="time" id="curTime">0:00</span>
+      <div class="seek" id="seek" role="slider" tabindex="0"
+           aria-label="Позиция трека" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00">
+        <div class="seek__fill" id="seekFill"></div>
+        <div class="seek__thumb" id="seekThumb"></div>
+      </div>
+      <span class="time" id="durTime">0:00</span>
+    </div>
+
+    <div class="player__extra">
+      <button type="button" class="pbtn pbtn--small" id="muteBtn" aria-label="Выключить звук" aria-pressed="false" title="Mute (M)">🔊</button>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8" aria-label="Громкость">
+      <button type="button" class="pbtn pbtn--small" id="listBtn" aria-expanded="false" aria-controls="queuePanel" aria-label="Очередь и плейлист">☰</button>
+    </div>
+
+    <div class="player__queue" id="queuePanel" hidden>
+      <div class="queue-col">
+        <h3>Сейчас в очереди</h3>
+        <ol id="queueList" class="queue-list"></ol>
+      </div>
+      <div class="queue-col">
+        <h3>Плейлист</h3>
+        <ol id="playlistList" class="queue-list"></ol>
+      </div>
+    </div>
+
+    <p class="player__error" id="playerError" hidden></p>
+    <p class="player__hotkeys">Space — пауза · ←/→ — ±5 сек · ↑/↓ — громкость · N/P — трек · M — mute</p>
+  </div>
+
+  <audio id="audio" preload="none" crossorigin="anonymous"></audio>
+</section>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
