@@ -87,16 +87,24 @@ function inject() {
 }
 
 function readRails() {
+  let val = null;
   try {
     const raw = localStorage.getItem(RAIL_KEY);
-    const val = raw ? JSON.parse(raw) : null;
-    return {
-      soap: !val || val.soap !== false,
-      fight: !val || val.fight !== false
-    };
+    val = raw ? JSON.parse(raw) : null;
   } catch (err) {
-    return { soap: true, fight: true };
+    val = null;
   }
+  const state = {
+    soap: !val || val.soap !== false,
+    fight: !val || val.fight !== false
+  };
+  // На телефоне две панели по бокам съедают весь экран. Если выбор ещё
+  // не сделан — на узком экране держим их выключенными, включаются кнопкой.
+  if (!val && window.matchMedia('(max-width: 640px)').matches) {
+    state.soap = false;
+    state.fight = false;
+  }
+  return state;
 }
 
 function writeRails(val) {

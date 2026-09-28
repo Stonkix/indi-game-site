@@ -1074,6 +1074,116 @@ body.is-loud .site-header { animation: headerPulse 1.6s ease-in-out infinite; }
   .chart__row { grid-template-columns: 3.2rem 1fr auto; padding: .7rem .6rem; }
 }
 
+/* ---------- 18.1. Телефоны ----------
+   Всё, что ниже, нужно именно маленьким экранам: место под док с
+   переключателями, крупные кнопки под палец, поля без зума на iOS,
+   шапка в одну прокручиваемую строку и панели, которые не жрут экран. */
+@media (max-width: 640px) {
+  :root { --player-h: 104px; }
+
+  body {
+    padding-bottom: calc(var(--player-h) + 3.4rem);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Шапка: навигация одной строкой с горизонтальной прокруткой */
+  .header-inner { padding: .55rem .7rem; gap: .4rem .6rem; }
+  .site-nav { width: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav ul { flex-wrap: nowrap; }
+  .site-nav a { font-size: .98rem; padding: .3rem .55rem; white-space: nowrap; }
+  .logo .ransom { font-size: 1.02rem; }
+  .loud-switch { font-size: .95rem; padding: .2rem .5rem .18rem .3rem; }
+  .tape { display: none; }
+  .caution-stripe { font-size: .8rem; letter-spacing: .1em; }
+
+  /* Первый экран */
+  .hero { padding-top: 1.5rem; }
+  .hero-sticker { display: none; }
+  .hero-kicker { font-size: .78rem; }
+  .ransom--mega { font-size: clamp(1.9rem, 9vw, 3rem); }
+  .ransom--mega .r { box-shadow: 3px 3px 0 rgba(10,10,10,.5); }
+  .ransom .r { padding: .02em .1em .05em; }
+  .hero-lead { font-size: .95rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; text-align: center; }
+  .handwritten-arrow { display: none; }
+
+  /* Каталог */
+  .grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .card__title { font-size: 1.12rem; }
+  .card__artists, .card__actions { gap: .4rem; }
+  .card__play, .vote-btn, .add-btn { min-height: 44px; }
+  .vote-btn, .add-btn { min-width: 48px; justify-content: center; }
+  .chip { display: inline-flex; align-items: center; min-height: 40px; }
+
+  /* Поля: 16px, иначе iOS зумит страницу при фокусе */
+  .filters input[type="search"], .filters select,
+  .form-row input, .machine select, .transport select {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .filters { padding: .8rem; gap: .8rem; }
+  .machine .transport input[type="range"] { width: 100%; max-width: none; }
+  .tport { flex: 1 1 42%; }
+  .tport--btns { flex: 1 1 100%; }
+
+  /* Топ недели: голоса и кнопка уезжают на вторую строку */
+  .chart__row { grid-template-columns: 2rem 1fr; row-gap: .3rem; padding: .55rem .3rem; }
+  .chart__right { grid-column: 2; justify-content: flex-start; }
+  .chart__play { min-height: 38px; }
+
+  /* Дворовые автоматы и игры */
+  .cab { padding: .6rem; }
+  .cab__screen { padding: .25rem; }
+  .dbtn, .pad { min-width: 3.4rem; min-height: 3rem; }
+  .seed, .cam, .kart-part { min-height: 44px; }
+  .sgrid { min-width: 470px; grid-template-columns: minmax(56px, auto) repeat(16, minmax(16px, 1fr)); }
+  .step { min-height: 18px; }
+
+  /* Плеер */
+  .player { padding: .45rem .5rem calc(.45rem + env(safe-area-inset-bottom)); }
+  .pbtn { min-width: 2.8rem; min-height: 2.8rem; }
+  .pbtn--play { min-width: 3.4rem; }
+  .seek { height: 26px; }
+  .seek__thumb { width: 12px; height: 34px; top: -6px; }
+  .player__extra input[type="range"] { width: 5rem; }
+
+  /* Док с переключателями — одна строка с прокруткой */
+  .rail-dock {
+    left: .5rem; right: .5rem; transform: none;
+    justify-content: flex-start;
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .rail-dock::-webkit-scrollbar { display: none; }
+  .rail-toggle { flex: none; font-size: .9rem; padding: .28rem .5rem .24rem; }
+  .rail-toggle:nth-child(odd), .rail-toggle:nth-child(even) { transform: none; }
+
+  /* Боковые панели — выше дока и мельче */
+  .rail { width: 106px; bottom: calc(var(--player-h) + 3.4rem); }
+  .rail canvas { height: 180px; }
+
+  .section-sub { font-size: .92rem; }
+  .footer-inner { font-size: .95rem; }
+}
+
+/* Совсем узкие экраны (старые iPhone SE и подобные) */
+@media (max-width: 380px) {
+  .ransom--mega { font-size: clamp(1.55rem, 8.4vw, 2.3rem); }
+  .site-nav a { font-size: .9rem; padding: .26rem .45rem; }
+  .cab__title { font-size: 1.1rem; }
+  .rail { width: 96px; }
+  .rail canvas { height: 160px; }
+}
+
+/* Телефон лёжа: плеер совсем низкий, панели мешают — убираем */
+@media (max-height: 520px) and (orientation: landscape) {
+  :root { --player-h: 88px; }
+  .player__cassette, .player__hotkeys, .rail { display: none; }
+  body { padding-bottom: calc(var(--player-h) + 2.6rem); }
+}
+
 /* ---------- 19. prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
